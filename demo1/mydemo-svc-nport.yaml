@@ -1,0 +1,19 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mydemo
+  labels:
+    app: mydemo
+    version: v1
+spec:
+  ports:
+    - name: http
+      nodePort: 31051
+      port: 3751
+      protocol: TCP
+      targetPort: 5000
+  selector:
+    app: mydemo
+    version: v1
+  type: NodePort

@@ -1,0 +1,22 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: mydemo-canary
+  annotations:
+    nginx.ingress.kubernetes.io/canary: "true"
+    nginx.ingress.kubernetes.io/canary-by-header: "setnew"
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: mydemo.dormidoshm.net
+    http:
+      paths:
+      - backend:
+          service:
+            name: mydemo2
+            port:
+              number: 5000
+        path: /
+        pathType: Prefix
+
